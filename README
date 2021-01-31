@@ -1,0 +1,35 @@
+NAME
+	asroot - run a process as the root user
+
+SYNOPSIS
+	asroot [-e] command [argument] ...
+
+DESCRIPTION
+	The asroot utility asks for the user's password and runs the specified
+	command with sanitised and updated environment variables.
+
+	Only users in the wheel group are allowed to run the asroot utility,
+	unless it is installed with non-standard permissions.
+
+OPTIONS
+	The asroot utility conforms to the Base Definitions volume of
+	POSIX.1-2017, Section 12.2, Utility Syntax Guidelines.
+
+	The following option is supported:
+
+	-e	Keep the environment variables as is. Neither sanitise nor
+		update them.
+
+OPERANDS
+	The following operands are supported:
+
+	command
+		The command that shall be run with as the root user. This will
+		be both the process image and the process's zeroth command line
+		argument.
+
+	argument ...
+		Command line arguments for the command to run.
+
+SEE ALSO
+	sudo(8), doas(1), su(1)
