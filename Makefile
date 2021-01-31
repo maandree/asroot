@@ -16,7 +16,7 @@ install: asroot
 	cp -- asroot.8 "$(DESTDIR)$(MANPREFIX)/man8/asroot.8"
 
 post-install:
-	chown -- 'root:wheel' "$(DESTDIR)$(PREFIX)/bin/asroot"
+	chown -- '0:wheel' "$(DESTDIR)$(PREFIX)/bin/asroot"
 	chmod -- 4750 "$(DESTDIR)$(PREFIX)/bin/asroot"
 
 uninstall:
