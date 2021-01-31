@@ -1,3 +1,4 @@
+/* See LICENSE file for copyright and license details. */
 #include <errno.h>
 #include <fcntl.h>
 #include <pwd.h>
