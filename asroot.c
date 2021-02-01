@@ -229,7 +229,10 @@ check_password(void)
 #ifndef WITH_LIBPASSPHRASE
 	struct termios stty_original;
 #endif
-	struct termios stty_enter, stty_sleep;
+	struct termios stty_enter;
+#if RETRY_SLEEP > 0
+	struct termios stty_sleep;
+#endif
 	int fd;
 
 	errno = 0;
@@ -307,8 +310,10 @@ check_password(void)
 	tcsetattr(fd, TCSAFLUSH, &stty_enter);
 #endif
 
+#if RETRY_SLEEP > 0
 	memcpy(&stty_sleep, &stty_enter, sizeof(stty_enter));
 	stty_sleep.c_lflag = 0;
+#endif
 
 again:
 	fprintf(stderr, PROMPT);
@@ -341,11 +346,11 @@ again:
 
 	if (strcmp(got, expected)) {
 		fprintf(stderr, "%s: incorrect password, please try again\n", argv0);
-		tcsetattr(fd, TCSAFLUSH, &stty_sleep);
 #if RETRY_SLEEP > 0
+		tcsetattr(fd, TCSAFLUSH, &stty_sleep);
 		sleep(RETRY_SLEEP);
-#endif
 		tcsetattr(fd, TCSAFLUSH, &stty_enter);
+#endif
 		goto again;
 	}
 
