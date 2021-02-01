@@ -20,8 +20,8 @@
 #define EXIT_EXEC   126
 #define EXIT_NOENT  127
 
-#ifndef ERROR_SLEEP
-# define ERROR_SLEEP 1
+#ifndef RETRY_SLEEP
+# define RETRY_SLEEP 1
 #endif
 
 #ifndef PROMPT
@@ -342,7 +342,9 @@ again:
 	if (strcmp(got, expected)) {
 		fprintf(stderr, "%s: incorrect password, please try again\n", argv0);
 		tcsetattr(fd, TCSAFLUSH, &stty_sleep);
-		sleep(ERROR_SLEEP);
+#if RETRY_SLEEP > 0
+		sleep(RETRY_SLEEP);
+#endif
 		tcsetattr(fd, TCSAFLUSH, &stty_enter);
 		goto again;
 	}
