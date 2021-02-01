@@ -31,8 +31,6 @@
 
 char *argv0;
 
-extern char **environ;
-
 static const char *env_whitelist[] = {
 	"DISPLAY=",
 	"WAYLAND_DISPLAY=",
