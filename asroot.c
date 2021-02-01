@@ -110,7 +110,7 @@ set_environ(void)
 	if (!new_environ) {
 		fprintf(stderr, "%s: calloc %zu %zu: %s\n",
 			argv0, sizeof(env_whitelist) / sizeof(*env_whitelist) + 5, sizeof(*env_whitelist), strerror(errno));
-		exit(errno == ENOENT ? 127 : 126);
+		exit(EXIT_ERROR);
 	}
 	for (i = 0, n = 0; env_whitelist[i]; i++) {
 		len = strlen(env_whitelist[i]);
