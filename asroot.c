@@ -161,12 +161,12 @@ set_environ(void)
 		stpcpy(stpcpy(new_environ[n++], "MAIL=/var/spool/mail/"), pw->pw_name);
 	}
 	if (pw->pw_shell && *pw->pw_shell) {
-		len = strlen(pw->pw_dir);
+		len = strlen(pw->pw_shell);
 		len += sizeof("SHELL=");
 		new_environ[n] = malloc(len);
 		if (!new_environ[n])
 			fprintf(stderr, "%s: malloc %zu: %s\n", argv0, len, strerror(errno));
-		stpcpy(stpcpy(new_environ[n++], "SHELL="), pw->pw_dir);
+		stpcpy(stpcpy(new_environ[n++], "SHELL="), pw->pw_shell);
 	}
 	new_environ[n] = NULL;
 
