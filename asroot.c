@@ -241,7 +241,8 @@ check_password(void)
 		}
 		*hostname = 0;
 		if (!gethostname(hostname, size)) {
-			break;
+			if (!hostname[size - 2])
+				break;
 		} else if (errno != ENAMETOOLONG) {
 			fprintf(stderr, "%s: gethostname %zu: %s\n", argv0, size, strerror(errno));
 			exit(EXIT_ERROR);
