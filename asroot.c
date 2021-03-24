@@ -237,11 +237,11 @@ check_password(void)
 	for (;;) {
 		hostname = realloc(hostname, size *= 2);
 		if (!hostname) {
-			fprintf(stderr, "%s: realloc %zu: %s\n", argv0, size, strerror(errno));
+			fprintf(stderr, "%s: realloc1 %zu: %s\n", argv0, size, strerror(errno));
 		}
 		*hostname = 0;
 		if (!gethostname(hostname, size)) {
-			if (!hostname[size - 2])
+			if (strnlen(hostname, size) < size - 1)
 				break;
 		} else if (errno != ENAMETOOLONG) {
 			fprintf(stderr, "%s: gethostname %zu: %s\n", argv0, size, strerror(errno));
@@ -393,7 +393,9 @@ main(int argc, char *argv[])
 		exit(EXIT_ERROR);
 	}
 
-	execvpe(argv[0], argv, new_environ ? new_environ : environ);
+	if (new_environ)
+		environ = new_environ;
+	execvp(argv[0], argv);
 	fprintf(stderr, "%s: execvpe %s: %s\n", argv0, argv[0], strerror(errno));
 	return errno == ENOENT ? EXIT_NOENT : EXIT_EXEC;
 }
