@@ -3,8 +3,12 @@
 CONFIGFILE = config.mk
 include $(CONFIGFILE)
 
+
 all: asroot
 asroot.o: asroot.c arg.h
+
+.c.o:
+	$(CC) -c -o $@ $< $(CFLAGS) $(CPPFLAGS)
 
 asroot: asroot.o
 	$(CC) -o $@ asroot.o $(LDFLAGS)
@@ -24,6 +28,9 @@ uninstall:
 	-rm -f -- "$(DESTDIR)$(MANPREFIX)/man8/asroot.8"
 
 clean:
-	-rm -f -- asroot.o asroot
+	-rm -f -- asroot *.o *.su
+
+.SUFFIXES:
+.SUFFIXES: .o .c
 
 .PHONY: all install post-install uninstall clean
