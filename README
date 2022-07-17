@@ -32,4 +32,4 @@ OPERANDS
 		Command line arguments for the command to run.
 
 SEE ALSO
-	sudo(8), doas(1), su(1)
+	editasroot(8), sudo(8), doas(1), su(1)
