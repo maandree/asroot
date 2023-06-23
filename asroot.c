@@ -31,6 +31,7 @@
 
 char *argv0;
 
+/* Keep list in sync with key2root(8)'s list */
 static const char *env_whitelist[] = {
 	"DISPLAY=",
 	"WAYLAND_DISPLAY=",
