@@ -237,7 +237,7 @@ check_password(void)
 	for (;;) {
 		hostname = realloc(hostname, size *= 2);
 		if (!hostname) {
-			fprintf(stderr, "%s: realloc1 %zu: %s\n", argv0, size, strerror(errno));
+			fprintf(stderr, "%s: realloc %zu: %s\n", argv0, size, strerror(errno));
 		}
 		*hostname = 0;
 		if (!gethostname(hostname, size)) {
