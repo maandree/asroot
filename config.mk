@@ -1,11 +1,11 @@
 PREFIX    = /usr
 MANPREFIX = $(PREFIX)/share/man
 
-CC = cc
+CC = c99
 
 CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_GNU_SOURCE
-CFLAGS   = -std=c99 -Wall -O2
-LDFLAGS  = -s -lcrypt
+CFLAGS   = -Wall -O2
+LDFLAGS  = -s -lcrypt -lenv
 
 
 # To use libpassphrase, add -DWITH_LIBPASSPHRASE to CPPFLAGS and -lpassphrase to LDFLAGS
