@@ -1,4 +1,4 @@
-.TH ASROOT 8 asroot
+.TH ASROOT 8 ASROOT
 
 .SH NAME
 asroot - run a process as the root user
@@ -52,17 +52,17 @@ The
 .B asroot
 utility does not use the standard input, however the
 .I command
-it starts may.
+it starts may use it.
 
 .SH INPUT FILES
 None.
 
 .SH ENVIRONMENT VARIABLES
-The following environment variables affects the execution of
+The following environment variables affect the execution of
 .BR asroot :
 .TP
-.SH PATH
-Default. See to the Base Definitions volume of POSIX.1-2017, Section 8.3, Other Environment Variables.
+.I PATH
+Default. See the Base Definitions volume of POSIX.1-2017, Section 8.3, Other Environment Variables.
 
 .SH ASYNCHRONOUS EVENTS
 Default.
@@ -72,7 +72,7 @@ The
 .B asroot
 utility does not use the standard output, however the
 .I command
-it starts may.
+it starts may use it.
 
 .SH STDERR
 The standard error is used for diagnostic messages and the
@@ -94,7 +94,7 @@ If the
 utility fails it will exit with one of the following statuses:
 .TP
 125
-A error occurred.
+An error occurred.
 .TP
 126
 The process failed to change process image.
@@ -124,11 +124,11 @@ None.
 The
 .I PATH
 environment variable will not be updated.
-Updates environment variables are:
+Updated environment variables are:
 .IR HOME ,
 .IR LOGNAME ,
 .IR MAIL ,
-.IR SHEEL ,
+.IR SHELL ,
 and
 .IR USER .
 

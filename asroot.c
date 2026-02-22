@@ -307,6 +307,6 @@ main(int argc, char *argv[])
 	}
 
 	execvp(argv[0], argv);
-	fprintf(stderr, "%s: execvpe %s: %s\n", argv0, argv[0], strerror(errno));
+	fprintf(stderr, "%s: execvp %s: %s\n", argv0, argv[0], strerror(errno));
 	return errno == ENOENT ? EXIT_NOENT : EXIT_EXEC;
 }
