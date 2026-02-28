@@ -128,6 +128,17 @@ read_passphrase(int fd)
 #endif
 
 
+static int
+consttime_streq(const char *a, const char *b)
+{
+	size_t i;
+	int ret = 1;
+	for (i = 0; a[i] && b[i]; i++)
+		ret &= a[i] == b[i];
+	return ret & !a[i] && !b[i];
+}
+
+
 static void
 check_password(void)
 {
@@ -257,7 +268,7 @@ again:
 #endif
 	free(passphrase);
 
-	if (strcmp(got, expected)) {
+	if (!consttime_streq(got, expected)) {
 		fprintf(stderr, "%s: incorrect password, please try again\n", argv0);
 #if RETRY_SLEEP > 0
 		tcsetattr(fd, TCSAFLUSH, &stty_sleep);
